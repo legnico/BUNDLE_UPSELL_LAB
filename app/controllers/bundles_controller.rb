@@ -1,9 +1,11 @@
-class BundlesController < ApplicationController
+class BundlesController < AuthenticatedController
   def index
     @bundles = Bundle.all
   end
 
   def new
+    @products = ShopifyAPI::Product.find(:all)
+    @webhooks = ShopifyAPI::Webhook.find(:all)
     @bundle = Bundle.new
   end
 
