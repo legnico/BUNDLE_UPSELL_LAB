@@ -1,7 +1,7 @@
 <h1>Dashbord</h1>
 <% @bundles.each do |bundle| %>
-  <% product_1 = @products.select {|product| product.id = bundle.product_1_id.to_i} %>
-  <% binding.pry %>
+  <%# product_1 = @products.select {|product| product.id = bundle.product_1_id.to_i} %>
+  <%= bundle %>
 <% end %>
 <br>
 <%= link_to "New Bundle", new_bundle_path %>
