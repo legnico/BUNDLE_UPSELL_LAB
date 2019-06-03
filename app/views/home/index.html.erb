@@ -1,25 +1,11 @@
 <% content_for :javascript do %>
- <script type="text/javascript">
-  ShopifyApp.ready(function(){
-   ShopifyApp.Bar.initialize({ title: "Home" });
-  });
- </script>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({ title: "Home" });
+    });
+  </script>
 <% end %>
 <h1>Select your bundle's products</h1>
-<<<<<<< HEAD
-​
-<ul>
- <% @products.each do |product| %>
-  <div class="card-product">
-   <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg">
-   <div class="card-product-infos">
-    <h2>
-     <li><%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %></li>
-    </h2>
-    <p><%= product.title %></p>
-   </div>
-  </div>
- <% end %>
 
 <div class="d-flex justify-content-around">
   <div>
@@ -51,15 +37,15 @@
 </div>
 
 <hr>
-​
+
 <h2>Webhooks</h2>
-​
+
 <% if @webhooks.present? %>
- <ul>
-  <% @webhooks.each do |webhook| %>
-   <li><%= webhook.topic %> : <%= webhook.address %></li>
-  <% end %>
- </ul>
+  <ul>
+    <% @webhooks.each do |webhook| %>
+      <li><%= webhook.topic %> : <%= webhook.address %></li>
+    <% end %>
+  </ul>
 <% else %>
- <p>This app has not created any webhooks for this Shop. Add webhooks to your ShopifyApp initializer if you need webhooks</p>
+  <p>This app has not created any webhooks for this Shop. Add webhooks to your ShopifyApp initializer if you need webhooks</p>
 <% end %>
