@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_03_115737) do
+ActiveRecord::Schema.define(version: 2019_06_03_170022) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bundles", force: :cascade do |t|
-    t.integer "product_1_id"
-    t.integer "product_2_id"
+    t.string "product_1_id"
+    t.string "product_2_id"
     t.boolean "published", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

@@ -1,3 +1,15 @@
-<h1>hello</h1>
-<%= link_to "New Bundl", new_bundle_path %>
+<h1>Dashbord</h1>
+<% @bundles.each do |bundle| %>
+  <% product_1 = @products.select {|product| product.id = bundle.product_1_id.to_i} %>
+  <% binding.pry %>
+<% end %>
+<br>
+<%= link_to "New Bundle", new_bundle_path %>
 
+<!-- @products.first.attributes.find(@bundles.first.product_2_id.to_i)
+
+@products.first.attributes.where(id: @bundles.first.product_2_id.to_i)
+1762709667911
+@products.find(id: 1762709667911)
+@products.find(1762709667911)
+@products.where(attributes.id: 1762709667911) -->
