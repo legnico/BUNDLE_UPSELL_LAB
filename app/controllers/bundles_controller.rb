@@ -27,6 +27,16 @@ class BundlesController < AuthenticatedController
   def delete
   end
 
+  def easy
+    # products = []
+    # @products.title.each do |title|
+    #   products << product.title
+    # end
+    @products = ShopifyAPI::Product.find("product_id": 17273791545415)
+
+    binding.pry
+  end
+
   private
 
   def bundle_params
