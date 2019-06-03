@@ -30,5 +30,4 @@ class BundlesController < ApplicationController
   def bundle_params
     params.require(:bundle).permit(:product_1, :product_2)
   end
-
 end

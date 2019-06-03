@@ -5,13 +5,36 @@
     });
   </script>
 <% end %>
-<h2>Products</h2>
+<h1>Select your bundle's products</h1>
 
-<ul>
-  <% @products.each do |product| %>
-    <li><%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %></li>
-  <% end %>
-</ul>
+<div class="d-flex justify-content-around">
+  <div>
+    <% @products.each do |product| %>
+      <div class="card-product m-3">
+        <img src=<%= product.images[0].src %>>
+        <div class="card-product-infos">
+          <h2>
+            <li><%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %></li>
+          </h2>
+          <p><%= product.variants[0].price %> €</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div>
+    <% @products.each do |product| %>
+      <div class="card-product m-3">
+        <img src=<%= product.images[0].src %>>
+        <div class="card-product-infos">
+          <h2>
+            <li><%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %></li>
+          </h2>
+          <p><%= product.variants[0].price %> €</p>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 <hr>
 
