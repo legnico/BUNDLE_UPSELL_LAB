@@ -5,11 +5,19 @@
     });
   </script>
 <% end %>
-<h2>Products</h2>
+<h1>Select your bundle's products</h1>
 
 <ul>
   <% @products.each do |product| %>
-    <li><%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %></li>
+    <div class="card-product">
+      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg">
+      <div class="card-product-infos">
+        <h2>
+          <li><%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %></li>
+        </h2>
+        <p><%= product.variants[0].price %> €</p>
+      </div>
+    </div>
   <% end %>
 </ul>
 
