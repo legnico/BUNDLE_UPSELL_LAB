@@ -17,6 +17,7 @@
             <li><%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %></li>
           </h2>
           <p><%= product.variants[0].price %> €</p>
+          <p><%= product.variants[0].id %></p>
         </div>
       </div>
     <% end %>
