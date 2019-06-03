@@ -7,6 +7,11 @@
   align-items: center;
 }
 
+.active {
+  opacity: 0.8;
+  box-shadow: 0 0 15px rgba(30,101,197,0.2);
+}
+
 .card-product img {
   height: 100%;
   width: 120px;
