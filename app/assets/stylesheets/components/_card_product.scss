@@ -1,11 +1,56 @@
 .card-product {
-  overflow: hidden;
-  height: 120px;
+  overflow: cover;
+  height: 150px;
   background: white;
   box-shadow: 0 0 15px rgba(0,0,0,0.2);
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
 }
+
+.product {
+  width: 380px;
+  display: flex;
+  height: 120px;
+  overflow: hidden;
+  padding: 5px;
+  p {
+    display:flex;
+    align-items: top;
+    padding: 10px;
+    margin: none;
+  }
+}
+
+.img {
+  width: 100px;
+  height: 100px;
+}
+
+.title
+{
+  width: 200px;
+  height: 150px;
+}
+
+.button {
+  width: 150px;
+  height: 150px;
+  flex-direction: column;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+
+.metrics {
+  width: 170px;
+  height: 170px;
+  flex-direction: column;
+  display: flex;
+  align-items: left;
+  justify-content: center;
+  }
 
 .inlist {
   display: flex;
@@ -30,7 +75,7 @@
 }
 
 .card-product p {
-  font-size: 12px;
+  font-size: 14px;
   line-height: 1.4;
   opacity: .7;
   margin-bottom: 0;
@@ -38,5 +83,31 @@
 }
 
 .card-product .card-product-infos {
+
   padding: 16px;
+  width: 380px;
+  display: flex;
+  height: 120px;
+  overflow: hidden;
+  padding: 5px;
+}
+
+.card-prod-new {
+  overflow: cover;
+  height: 150px;
+  background: white;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.card-block {
+  display:block;
+}
+
+.card {
+  display:flex;
+  justify-content:space-around;
 }
