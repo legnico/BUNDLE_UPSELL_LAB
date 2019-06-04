@@ -26,7 +26,24 @@ class BundlesController < AuthenticatedController
   def update
   end
 
-  def delete
+  def destroy
+    @bundle = Bundle.find(params[:id])
+    @bundle.destroy
+    #authorize @bundle
+    redirect_to root_path
+    flash[:notice] = "Votre Bundle à été supprimé"
+  end
+
+
+  def toggle_online
+    @bundle = Bundle.find(params[:id])
+    #authorize @bundle
+    @bundle.online = !@bundle.online
+    @bundle.save
+      respond_to do |format|
+        format.html { redirect_to bundles_path }
+        format.js
+      end
   end
 
   private

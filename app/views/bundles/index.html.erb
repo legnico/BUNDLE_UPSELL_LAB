@@ -1,10 +1,31 @@
-<h1>Dashbord</h1>
-<% @bundles.each do |bundle| %>
-  <% product_1 = @products.select {|product| product.id == bundle.product_1_id.to_i } %>
-  <% product_2 = @products.select {|product| product.id == bundle.product_2_id.to_i } %>
-  <%= product_1[0].title %>
-  <%= product_2[0].title %>
-<% end %>
-<br>
-<%= link_to "New Bundle", new_bundle_path %>
+<div class="container">
+  <h1>Dashbord</h1>
+
+  <%if @bundles == nil  %>
+  <p>You have no bundle yet !</p>
+    <%= link_to "Create a Bundle", new_bundle_path%>
+
+  <%else%>
+  <div class="d-flex">
+    <% @bundles.each do |bundle| %>
+      <% product_1 = @products.select {|product| product.id == bundle.product_1_id.to_i } %>
+      <% product_2 = @products.select {|product| product.id == bundle.product_2_id.to_i } %>
+      <%= product_1[0].title %>
+      <%= product_2[0].title %>
+ <%= link_to "Supprimer", bundle_path(bundle),class: "btn btn-outline-danger rounded p-2",
+              method: :delete,
+              data: {confirm: "are you sure?", bundle_id: bundle.id}%>
+
+    <input class="tgl tgl-light" id="cb1" type="checkbox"></input>
+    <label class="tgl-btn" for="cb1"></label>
+
+  </div>
+
+    <% end %>
+    <br>
+    <%= link_to "New Bundle", new_bundle_path %>
+  <%end %>
+</div>
+
+
 
