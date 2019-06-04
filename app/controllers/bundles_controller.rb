@@ -14,7 +14,7 @@ class BundlesController < AuthenticatedController
   def create
     @bundle = Bundle.new(bundle_params)
     if @bundle.save
-      redirect_to bundle_path(@bundle)
+      redirect_to root_path
     else
       render :new
     end
@@ -32,6 +32,6 @@ class BundlesController < AuthenticatedController
   private
 
   def bundle_params
-    params.require(:bundle).permit(:product_1, :product_2)
+    params.require(:bundle).permit(:product_1_id, :product_2_id)
   end
 end

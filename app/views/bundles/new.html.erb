@@ -7,46 +7,30 @@
 <% end %>
 <h1>Select your bundle's products</h1>
 
-<div class="d-flex justify-content-around">
-  <div>
-    <% @products.each do |product| %>
-      <div class="card-product m-3">
-        <img src=<%= product.images[0].src %>>
-        <div class="card-product-infos">
-          <h2>
-            <li><%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %></li>
-          </h2>
-          <p><%= product.variants[0].price %> €</p>
-          <p><%= product.variants[0].id %></p>
-        </div>
-      </div>
+<%= simple_form_for(@bundle) do |f| %>
+<div class="d-block">
+  <div class="d-flex justify-content-around">
+    <% (1..2).each do |n|%>
+    <div class="inlist n<%= n %>">
+      <% @products.each do |product| %>
+        <input type="radio" class="d-none" value="<%= product.id %>" name="bundle[product_<%=n%>_id]" id="product_<%=n%>_<%= product.id %>">
+        <label for="product_<%=n%>_<%= product.id %>">
+          <div class="card-product m-3">
+            <img src=<%= product.images[0].src %>>
+            <div class="card-product-infos">
+              <h2>
+                <li><%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %></li>
+              </h2>
+              <p><%= product.variants[0].price %> €</p>
+            </div>
+          </div>
+        </label>
+      <% end %>
+    </div>
     <% end %>
   </div>
-  <div>
-    <% @products.each do |product| %>
-      <div class="card-product m-3">
-        <img src=<%= product.images[0].src %>>
-        <div class="card-product-infos">
-          <h2>
-            <li><%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %></li>
-          </h2>
-          <p><%= product.variants[0].price %> €</p>
-        </div>
-      </div>
-    <% end %>
+  <div class="d-flex justify-content-center">
+  <%= f.submit "Create My Bundle", class: "btn btn-primary"  %>
   </div>
-</div>
-
-<hr>
-
-<h2>Webhooks</h2>
-
-<% if @webhooks.present? %>
-  <ul>
-    <% @webhooks.each do |webhook| %>
-      <li><%= webhook.topic %> : <%= webhook.address %></li>
-    <% end %>
-  </ul>
-<% else %>
-  <p>This app has not created any webhooks for this Shop. Add webhooks to your ShopifyApp initializer if you need webhooks</p>
 <% end %>
+

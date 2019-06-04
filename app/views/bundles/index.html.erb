@@ -1,7 +1,9 @@
 <h1>Dashbord</h1>
+<% i= 0 %>
 <% @bundles.each do |bundle| %>
   <% product_1 = @products.select {|product| product.id == bundle.product_1_id.to_i } %>
   <% product_2 = @products.select {|product| product.id == bundle.product_2_id.to_i } %>
+  <%i += 1%>
   <%= product_1[0].title %>
   <%= product_2[0].title %>
 <% end %>
