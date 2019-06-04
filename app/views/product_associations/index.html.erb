@@ -1,0 +1,15 @@
+<h1>Dashbord</h1>
+<% @product_associations.each do |product_association| %>
+  <% primary_product = @products.select {|product| product.id == product_association.primary_product_id.to_i } %>
+  <% associated_product = @products.select {|product| product.id == product_association.associated_product_id.to_i } %>
+
+  <div class="card-product m-3">
+    <img src=<%= primary_product[0].images[0].src %>>
+    <%= primary_product[0].title %>
+    <img src=<%= associated_product[0].images[0].src %>>
+    <%= associated_product[0].title %>
+  </div>
+
+<% end %>
+<br>
+<%= link_to "New Bundle",  new_product_association_path, class: "btn btn-primary"%>
