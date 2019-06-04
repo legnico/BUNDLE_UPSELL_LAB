@@ -1,28 +1,32 @@
 <% content_for :javascript do %>
+
   <script type="text/javascript">
     ShopifyApp.ready(function(){
       ShopifyApp.Bar.initialize({ title: "Home" });
     });
   </script>
 <% end %>
+<div class="container">
 <h1>Select your bundle's products</h1>
 
 <%= simple_form_for(@product_association) do |f| %>
+
 <div class="d-block">
   <div class="d-flex justify-content-around">
     <% (1..2).each do |n|%>
       <%n == 1 ? @param_name = "primary_product_id" : @param_name = "associated_product_id" %>
+
       <div class="inlist n<%= n %>">
         <% @products.each do |product| %>
           <input type="radio" class="d-none" value="<%= product.id %>" name="product_association[<%= @param_name %>]" id="<%= @param_name%>_<%= product.id %>">
           <label for="<%= @param_name%>_<%= product.id %>">
+
             <div class="card-product m-3">
               <img src=<%= product.images[0].src %>>
+
               <div class="card-product-infos">
-                <h2>
-                  <li><%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %></li>
-                </h2>
-                <p><%= product.variants[0].price %> €</p>
+                 <%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %>
+                <p><%= product.variants[0].price %>€</p>
               </div>
             </div>
           </label>
@@ -30,8 +34,9 @@
       </div>
     <% end %>
   </div>
+
   <div class="d-flex justify-content-center">
   <%= f.submit "Create My Bundle", class: "btn btn-primary"  %>
 </div>
 <% end %>
-
+</div>
