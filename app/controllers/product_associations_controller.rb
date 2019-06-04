@@ -11,9 +11,9 @@ class ProductAssociationsController < AuthenticatedController
   end
 
   def create
-    @product_association = product_association.new(product_association_params)
+    @product_association = ProductAssociation.new(product_association_params)
     if @product_association.save
-      redirect_to product_association_path(@product_association)
+      redirect_to root_path
     else
       render :new
     end
