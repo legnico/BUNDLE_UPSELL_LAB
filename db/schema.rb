@@ -16,8 +16,8 @@ ActiveRecord::Schema.define(version: 2019_06_03_115737) do
   enable_extension "plpgsql"
 
   create_table "bundles", force: :cascade do |t|
-    t.integer "product_1_id"
-    t.integer "product_2_id"
+    t.string "product_1_id"
+    t.string "product_2_id"
     t.boolean "published", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

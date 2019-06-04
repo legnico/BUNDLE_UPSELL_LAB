@@ -1,6 +1,8 @@
 class BundlesController < AuthenticatedController
   def index
     @bundles = Bundle.all
+    @products = ShopifyAPI::Product.find(:all)
+    #binding.pry
   end
 
   def new
