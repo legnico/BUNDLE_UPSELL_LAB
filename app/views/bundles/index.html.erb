@@ -1,5 +1,6 @@
 <h1>Dashbord</h1>
 <% @bundles.each do |bundle| %>
+<<<<<<< HEAD
   <% product_1 = @products.select {|product| product.id == bundle.product_1_id.to_i } %>
   <% product_2 = @products.select {|product| product.id == bundle.product_2_id.to_i } %>
   <%= product_1[0].title %>
@@ -8,6 +9,16 @@
 <br>
 <%= link_to "New Bundle", new_bundle_path %>
 <!-- @products.first.attributes.find(@bundles.first.product_2_id.to_i)
+=======
+  <%# product_1 = @products.select {|product| product.id = bundle.product_1_id.to_i} %>
+  <%= bundle %>
+<% end %>
+<br>
+<%= link_to "New Bundle", new_bundle_path %>
+
+<!-- @products.first.attributes.find(@bundles.first.product_2_id.to_i)
+
+>>>>>>> master
 @products.first.attributes.where(id: @bundles.first.product_2_id.to_i)
 1762709667911
 @products.find(id: 1762709667911)
