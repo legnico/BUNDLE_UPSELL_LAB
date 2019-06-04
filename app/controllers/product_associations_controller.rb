@@ -25,7 +25,23 @@ class ProductAssociationsController < AuthenticatedController
   def update
   end
 
-  def delete
+  def destroy
+    @product_association = ProductAssociation.find(params[:id])
+    @product_association.destroy
+    # authorize @product_association
+    redirect_to product_associations_path
+    flash[:notice] = "Votre Bundle à été supprimé"
+  end
+
+  def toggle_online
+    @product_association = ProductAssociation.find(params[:id])
+    # authorize @product_association
+    @product_association.online = !@product_association.online
+    @product_association.save
+    respond_to do |format|
+      format.html { redirect_to product_associations_path }
+      format.js
+    end
   end
 
   private
