@@ -18,7 +18,7 @@
         <% primary_product = @products.select {|product| product.id == product_association.primary_product_id.to_i } %>
         <% associated_product = @products.select {|product| product.id == product_association.associated_product_id.to_i } %>
 
-        <div class="card-product">
+        <div class="card-product" id="<%= product_association.id %>">
 
           <div class="product">
             <img src=<%= primary_product[0].images[0].src %>>
@@ -39,12 +39,17 @@
           <div class="button">
            <%= link_to "Supprimer", product_association_path(product_association),class: "btn btn-outline-danger rounded p-2",
               method: :delete,
+              remote:true,
               data: {confirm: "are you sure?", product_association_id: product_association.id}%>
           </div>
-          <div class="button"><!-- Toggle_ONline -->
-            <input class="tgl tgl-light" id="cb<%=index%>" type="checkbox"></input>
-            <label class="tgl-btn" for="cb<%=index%>"></label>
-          </div>
+          <%= form_for product_association, as: :patch, url: toggle_online_path(product_association), remote:true do |f| %>
+              <div class="button" id=<%="onoff"%>><!-- Toggle_ONline -->
+              <input class="tgl tgl-light" id="cb<%=index%>" type="checkbox" name="published" <%= "checked" if product_association.published == true %>></input>
+              <label class="tgl-btn" for="cb<%=index%>"></label>
+              <%= f.submit 'Ready', class:"button_submit d-none" %>
+            </div>
+          <% end %>
+
 
         </div>
         <% end %>
@@ -53,3 +58,12 @@
     <% end %>
   </div>
 </div>
+
+<script>
+  const online = document.querySelectorAll('input.tgl');
+  online.forEach(function(element) {
+    element.addEventListener("change", (event) => {
+      event.currentTarget.closest("form").querySelector('.button_submit').click()
+    });
+  });
+</script>
