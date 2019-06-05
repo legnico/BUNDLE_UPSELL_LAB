@@ -1,13 +1,11 @@
 <div class="container">
-  <h1>Dashbord</h1>
-  <%if @products == nil  %>
-    <p>You have no bundle yet !</p>
-    <%= link_to "Create a Bundle", new_product_association_path%>
+  <div>
+    <h1>Dashboard</h1>
+    <%if @products == nil  %>
+      <p>You have no bundle yet !</p>
+      <%= link_to "Create a Bundle", new_product_association_path%>
 
-  <%else%>
-    <% @product_associations.each do |product_association| %>
-      <% primary_product = @products.select {|product| product.id == product_association.primary_product_id.to_i } %>
-      <% associated_product = @products.select {|product| product.id == product_association.associated_product_id.to_i } %>
+    <%else%>
       <div class="d-flex justify-content-between">
         <p>Primary Product</p>
         <p>Associated Product</p>
@@ -15,28 +13,57 @@
         <p>Published</p>
       </div>
 
-      <div class="card-product">
-        <div class="mx-4">
-          <img src=<%= primary_product[0].images[0].src %>>
-          <%= primary_product[0].title %>
-        </div>
-        <div class="mx-4">
-          <img src=<%= associated_product[0].images[0].src %>>
-          <%= associated_product[0].title %>
-        </div>
-        <div class="mx-4">
-          <p>Revenues: $0</p>
-          <p>Conversion Rate: 0%</p>
-          <p>N° of impression: 0</p>
-        </div>
-         <%= link_to "Supprimer", product_association_path(product_association),class: "btn btn-outline-danger rounded p-2",
+      <div>
+        <%@product_associations.each_with_index do |product_association, index| %>
+        <% primary_product = @products.select {|product| product.id == product_association.primary_product_id.to_i } %>
+        <% associated_product = @products.select {|product| product.id == product_association.associated_product_id.to_i } %>
+
+        <div class="card-product" id="<%= product_association.id %>">
+
+          <div class="product">
+            <img src=<%= primary_product[0].images[0].src %>>
+            <p><%= primary_product[0].title %></p>
+          </div>
+
+          <div class="product">
+            <img src=<%= associated_product[0].images[0].src %>>
+            <p><%= associated_product[0].title %></p>
+          </div>
+
+          <div class="metrics">
+            <p>Revenues: $0</p>
+            <p>Conversion Rate: 0%</p>
+            <p>N° of impression: 0</p>
+          </div>
+
+          <div class="button">
+           <%= link_to "Supprimer", product_association_path(product_association),class: "btn btn-outline-danger rounded p-2",
               method: :delete,
+              remote:true,
               data: {confirm: "are you sure?", product_association_id: product_association.id}%>
-        <!-- Toggle_ONline -->
-        <input class="tgl tgl-light" id="cb1" type="checkbox"></input>
-        <label class="tgl-btn" for="cb1"></label>
-      <% end %>
+          </div>
+          <%= form_for product_association, as: :patch, url: toggle_online_path(product_association), remote:true do |f| %>
+              <div class="button" id=<%="onoff"%>><!-- Toggle_ONline -->
+              <input class="tgl tgl-light" id="cb<%=index%>" type="checkbox" name="published" <%= "checked" if product_association.published == true %>></input>
+              <label class="tgl-btn" for="cb<%=index%>"></label>
+              <%= f.submit 'Ready', class:"button_submit d-none" %>
+            </div>
+          <% end %>
+
+
+        </div>
+        <% end %>
       </div>
-  <%= link_to "New Bundle",  new_product_association_path, class: "btn btn-primary"%>
-  <% end %>
+    <%= link_to "New Bundle",  new_product_association_path, class: "btn btn-primary"%>
+    <% end %>
+  </div>
 </div>
+
+<script>
+  const online = document.querySelectorAll('input.tgl');
+  online.forEach(function(element) {
+    element.addEventListener("change", (event) => {
+      event.currentTarget.closest("form").querySelector('.button_submit').click()
+    });
+  });
+</script>

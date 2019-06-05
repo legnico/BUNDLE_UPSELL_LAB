@@ -1,4 +1,6 @@
 class ProductAssociationsController < AuthenticatedController
+  skip_before_action :verify_authenticity_token, :only => [:toggle_online]
+
   def index
     @product_associations = ProductAssociation.all
     @products = ShopifyAPI::Product.find(:all)
@@ -11,9 +13,9 @@ class ProductAssociationsController < AuthenticatedController
   end
 
   def create
-    @product_association = product_association.new(product_association_params)
+    @product_association = ProductAssociation.new(product_association_params)
     if @product_association.save
-      redirect_to product_association_path(@product_association)
+      redirect_to root_path
     else
       render :new
     end
@@ -29,18 +31,18 @@ class ProductAssociationsController < AuthenticatedController
     @product_association = ProductAssociation.find(params[:id])
     @product_association.destroy
     # authorize @product_association
-    redirect_to product_associations_path
-    flash[:notice] = "Votre Bundle à été supprimé"
+    respond_to do |format|
+      format.html { redirect_to product_associations_path }
+      format.js
+    end
   end
 
   def toggle_online
     @product_association = ProductAssociation.find(params[:id])
-    # authorize @product_association
-    @product_association.online = !@product_association.online
+    @product_association.published = !@product_association.published
     @product_association.save
     respond_to do |format|
       format.html { redirect_to product_associations_path }
-      format.js
     end
   end
 

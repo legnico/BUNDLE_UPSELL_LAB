@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   root to: 'product_associations#index'
-  resources :product_associations, only: [:index, :new, :edit, :destroy]
+  patch "product_associations/:id/setonline", to: "product_associations#toggle_online", as: "toggle_online"
+  get  "/edit", to: "graphic_settings#edit"
+  resources :graphic_settings, only: [:update]
+  resources :product_associations, only: [:index, :new, :create, :edit, :destroy]
   mount ShopifyApp::Engine, at: '/'
 
   # Our API (to send info to shopify)
