@@ -18,6 +18,7 @@ gem 'uglifier'
 gem 'webpacker'
 gem 'shopify_app'
 gem 'ngrok-tunnel'
+gem 'rack-cors'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
