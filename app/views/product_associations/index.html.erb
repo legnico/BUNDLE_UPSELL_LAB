@@ -1,63 +1,84 @@
 <div class="container">
-  <div>
-    <h1>Dashboard</h1>
-    <%# raise %>
-    <%if @products == nil  %>
-      <p>You have no bundle yet !</p>
-      <%= link_to "Create a Bundle", new_product_association_path%>
-
-    <%else%>
-      <div class="d-flex justify-content-between">
-        <p>Primary Product</p>
-        <p>Associated Product</p>
-        <p>Metrics</p>
-        <p>Published</p>
-      </div>
-
-      <div>
-        <%@product_associations.each_with_index do |product_association, index| %>
-        <% primary_product = @products.select {|product| product.id == product_association.primary_product_id.to_i } %>
-        <% associated_product = @products.select {|product| product.id == product_association.associated_product_id.to_i } %>
-
-        <div class="card-product" id="<%= product_association.id %>">
-
-          <div class="product">
-            <img src=<%= primary_product[0].images[0].src %>>
-            <p><%= primary_product[0].title %></p>
+  <div class="row">
+    <div class="col-4">
+      <div class="Polaris-Layout__Section Polaris-Layout__Section--secondary">
+        <div class="Polaris-Page-Header">
+          <div class="Polaris-Card__Header">
+            <h2 class="Polaris-Heading">Bundle offers</h2>
           </div>
-
-          <div class="product">
-            <img src=<%= associated_product[0].images[0].src %>>
-            <p><%= associated_product[0].title %></p>
+          <div class="Polaris-Card__Section">
+            <%= link_to "New Bundle",  new_product_association_path, class: "btn btn-primary"%>
           </div>
-
-          <div class="metrics">
-            <p>Revenues: $0</p>
-            <p>Conversion Rate: 0%</p>
-            <p>N° of impression: 0</p>
-          </div>
-
-          <div class="button">
-           <%= link_to "Supprimer", product_association_path(product_association),class: "btn btn-outline-danger rounded p-2",
-              method: :delete,
-              remote:true,
-              data: {confirm: "are you sure?", product_association_id: product_association.id}%>
-          </div>
-          <%= form_for product_association, as: :patch, url: toggle_online_path(product_association), remote:true do |f| %>
-              <div class="button" id=<%="onoff"%>><!-- Toggle_ONline -->
-              <input class="tgl tgl-light" id="cb<%=index%>" type="checkbox" name="published" <%= "checked" if product_association.published == true %>></input>
-              <label class="tgl-btn" for="cb<%=index%>"></label>
-              <%= f.submit 'Ready', class:"button_submit d-none" %>
-            </div>
-          <% end %>
-
         </div>
-        <% end %>
       </div>
-    <%= link_to "New Bundle",  new_product_association_path, class: "btn btn-primary"%>
-    <% end %>
+    </div>
+
+    <div class="col-8">
+      <div class="split", style="--top-bar-background:#00848e; --top-bar-color:#f9fafb; --top-bar-background-lighter:#1d9ba4;">
+        <div>
+          <div class="Polaris-Page">
+            <div class="Polaris-Page-Header">
+              <div class="Polaris-Page-Header__TitleAndRollup">
+
+                <div class="Polaris-Page__Content">
+
+                  <div class="Polaris-Card">
+
+                    <div class="">
+                      <div class="Polaris-DataTable__Navigation"><button type="button" class="Polaris-Button Polaris-Button--disabled Polaris-Button--plain Polaris-Button--iconOnly" disabled="" aria-label="Scroll table left one column"><span class="Polaris-Button__Content"><span class="Polaris-Button__Icon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+                              <path d="M12 16a.997.997 0 0 1-.707-.293l-5-5a.999.999 0 0 1 0-1.414l5-5a.999.999 0 1 1 1.414 1.414L8.414 10l4.293 4.293A.999.999 0 0 1 12 16" fill-rule="evenodd"></path>
+                            </svg></span></span></span></button><button type="button" class="Polaris-Button Polaris-Button--plain Polaris-Button--iconOnly" aria-label="Scroll table right one column"><span class="Polaris-Button__Content"><span class="Polaris-Button__Icon"><span class="Polaris-Icon"><svg viewBox="0 0 20 20" class="Polaris-Icon__Svg" focusable="false" aria-hidden="true">
+                              <path d="M8 16a.999.999 0 0 1-.707-1.707L11.586 10 7.293 5.707a.999.999 0 1 1 1.414-1.414l5 5a.999.999 0 0 1 0 1.414l-5 5A.997.997 0 0 1 8 16" fill-rule="evenodd"></path>
+                            </svg></span></span></span></button>
+                      </div>
+                      <div class="Polaris-DataTable">
+                    <table class="Polaris-DataTable__Table">
+                      <thead>
+                        <tr>
+                          <th data-polaris-header-cell="true" class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header" scope="col" aria-sort="none" style="height: 53px;">Product</th>
+                          <th data-polaris-header-cell="true" class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header" scope="col" aria-sort="none" style="height: 53px;">Product 2</th>
+                          <th data-polaris-header-cell="true" class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header" scope="col" aria-sort="none" style="height: 53px;">Rates</th>
+                          <th data-polaris-header-cell="true" class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header" scope="col" aria-sort="none" style="height: 53px;">Action</th>
+                          <th data-polaris-header-cell="true" class="Polaris-DataTable__Cell Polaris-DataTable__Cell--header" scope="col" aria-sort="none" style="height: 53px;">Published</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <%@product_associations.each_with_index do |product_association, index| %>
+                          <% primary_product = @products.select {|product| product.id == product_association.primary_product_id.to_i } %>
+                          <% associated_product = @products.select {|product| product.id == product_association.associated_product_id.to_i } %>
+                        <tr class="Polaris-DataTable__TableRow" id="<%= product_association.id %>" style="height: 72px;">
+                          <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell" style="height: 72px;"><%= primary_product[0].title %></td>
+                          <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell" style="height: 72px;"><%= associated_product[0].title %></td>
+                          <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell" style="height: 72px;">Tx conversion 10%,<br> Tx marge 20%</td>
+                          <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell" style="height: 72px;">
+                           <%= link_to "Supprimer", product_association_path(product_association),class: "btn btn-outline-danger rounded p-2",
+                              method: :delete,
+                              remote:true,
+                              data: {confirm: "are you sure?", product_association_id: product_association.id}%>
+                          </td>
+                          <td class="Polaris-DataTable__Cell Polaris-DataTable__Cell button" id=<%="onoff"%>, style="height: 72px;">
+                            <%= form_for product_association, as: :patch, url: toggle_online_path(product_association), remote:true do |f| %>
+                              <input class="tgl tgl-light" id="cb<%=index%>" type="checkbox" name="published" <%= "checked" if product_association.published == true %>></input>
+                              <label class="tgl-btn" for="cb<%=index%>"></label>
+                              <%= f.submit 'Ready', class:"button_submit d-none" %>
+                            <%end %>
+                          </td>
+                        </tr>
+                        <%end%>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
 
 <script>
   const online = document.querySelectorAll('input.tgl');
