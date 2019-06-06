@@ -1,2 +1,91 @@
-<h1>Graphic Settings#edit</h1>
-<p>Find me in app/views/graphicsettings/edit.html.erb</p>
+  <!-- <div class="upsell-wrapper"> -->
+    <div class="button-container">
+      <button id="button-modal"> Preview </button>
+    </div>
+
+    <div id="modal" class="hidden">
+    <h1 style="color: <%= @graphic_settings.add_to_cart_button_color %>;"><%= @products.first.title %></h1>
+      <h3><%#= @graphic_settings.add_to_cart_button_color %></h3>
+      <h3><%#= @graphic_settings.add_to_cart_button_text_color %></h3>
+      <h3><%#= @graphic_settings.no_thanks_text_color %></h3>
+
+      <h3 style="color: <%= @graphic_settings.regular_price_text_color %>;"> <%= @products.first.variants[0].price %></h3>
+
+      <h3><%#= @graphic_settings.sale_price_text_color %></h3>
+      <h3><%#= @graphic_settings.upsell_popup_font_family %></h3>
+      <h3><%#= @graphic_settings.add_to_cart_button_font_family %></h3>
+      <button id="add-to-cart" style="background-color: <%= @graphic_settings.add_to_cart_button_color %>"> Add to cart </button>
+      <button id="close" style="color: <%= @graphic_settings.no_thanks_text_color %>"> No thanks </button>
+    </div>
+
+
+    <div class="form-group string optional graphic_setting_add_to_cart_button_color form-group-valid">
+      <div style="background-color: <%= @graphic_settings.add_to_cart_button_color %>;border-radius: 50%;height: 20px; width: 20px ">
+      </div>
+
+      <label class="form-control-label string optional" for="graphic_setting_add_to_cart_button_color">Add to cart button color
+      </label>
+      <input class="form-control is-valid string optional" type="text" value="green" name="graphic_setting[add_to_cart_button_color]" id="graphic_setting_add_to_cart_button_color"/>
+    </div>
+
+    <div class="form-group string optional graphic_setting_add_to_cart_button_text_color form-group-valid">
+      <div style="background-color: <%= @graphic_settings.add_to_cart_button_text_color %>;border-radius: 50%;height: 20px; width: 20px ">
+      </div>
+      <label class="form-control-label string optional" for="graphic_setting_add_to_cart_button_text_color">Add to cart button text color
+      </label>
+      <input class="form-control is-valid string optional" type="text" value="red" name="graphic_setting[add_to_cart_button_text_color]" id="graphic_setting_add_to_cart_button_text_color" />
+    </div>
+
+    <div class="form-group string optional graphic_setting_no_thanks_text_color form-group-valid">
+      <div style="background-color: <%= @graphic_settings.no_thanks_text_color %>;border-radius: 50%;height: 20px; width: 20px ">
+      </div>
+      <label class="form-control-label string optional" for="graphic_setting_no_thanks_text_color">No thanks text color</label>
+      <input class="form-control is-valid string optional" type="text" value="grey" name="graphic_setting[no_thanks_text_color]" id="graphic_setting_no_thanks_text_color" />
+    </div>
+
+    <div class="form-group string optional graphic_setting_regular_price_text_color form-group-valid">
+      <div style="background-color: <%= @graphic_settings.product_title_text_color %>;border-radius: 50%;height: 20px; width: 20px ">
+      </div>
+      <label class="form-control-label string optional" for="graphic_setting_product_title_text_color">Product title text color</label>
+      <input class="form-control is-valid string optional" type="text" value="blue" name="graphic_setting[product_title_text_color]" id="graphic_setting_product_title_text_color" />
+    </div>
+
+    <div class="form-group string optional graphic_setting_regular_price_text_color form-group-valid">
+      <div style="background-color: <%= @graphic_settings.regular_price_text_color %>;border-radius: 50%;height: 20px; width: 20px ">
+      </div>
+      <label class="form-control-label string optional" for="graphic_setting_regular_price_text_color">Regular price text color</label>
+      <input class="form-control is-valid string optional" type="text" value="blue" name="graphic_setting[regular_price_text_color]" id="graphic_setting_regular_price_text_color" />
+    </div>
+
+    <div class="form-group string optional graphic_setting_sale_price_text_color form-group-valid">
+      <div style="background-color: <%= @graphic_settings.sale_price_text_color %>;border-radius: 50%;height: 20px; width: 20px ">
+      </div>
+      <label class="form-control-label string optional" for="graphic_setting_sale_price_text_color">Sale price text color
+      </label>
+      <input class="form-control is-valid string optional" type="text" value="pink" name="graphic_setting[sale_price_text_color]" id="graphic_setting_sale_price_text_color" />
+    </div>
+
+    <div class="form-group string optional graphic_setting_upsell_popup_font_family form-group-valid">
+      <div style="background-color: <%= @graphic_settings.upsell_popup_font_family %>;border-radius: 50%;height: 20px; width: 20px ">
+      </div>
+      <label class="form-control-label string optional" for="graphic_setting_upsell_popup_font_family">Upsell popup font family
+      </label>
+      <select class="form-control is-valid string optional" id="graphic_setting_upsell_popup_font_family">
+        <option>Sherif</option>
+        <option>Lato</option>
+        <option>Arial</option>
+      </select>
+    </div>
+
+    <div class="form-group string optional graphic_setting_add_to_cart_button_font_family form-group-valid">
+      <div style="background-color: <%= @graphic_settings.add_to_cart_button_font_family %>;border-radius: 50%;height: 20px; width: 20px ">
+      </div>
+      <label class="form-control-label string optional" for="graphic_setting_add_to_cart_button_font_family">Add to cart button font family
+      </label>
+      <select class="form-control is-valid string optional" id="graphic_setting_upsell_popup_font_family">
+        <option>Sherif</option>
+        <option>Lato</option>
+        <option>Arial</option>
+      </select>
+    </div>
+<!-- </div> -->

@@ -1,4 +1,6 @@
 import "bootstrap";
 import { select } from '../plugins/bundleselect';
-
-select()
+import { buttonModal, buttonClose } from '../plugins/popupsettings';
+select();
+buttonModal();
+buttonClose();
