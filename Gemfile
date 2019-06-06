@@ -8,8 +8,8 @@ gem 'puma'
 gem 'rails', '5.2.3'
 gem 'redis'
 gem 'simple_form'
-
-
+gem 'simple_token_authentication'
+gem 'pundit'
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass', '~> 5.6.1'
 gem 'sassc-rails'

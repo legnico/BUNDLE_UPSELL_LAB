@@ -4,6 +4,7 @@
 //= require action_cable
 //= require_self
 //= require_tree ./channels
+document.getElementById("loading_bar").style.transform = "scaleX(1.0)";
 
 (function() {
   this.App || (this.App = {});
@@ -11,3 +12,4 @@
   App.cable = ActionCable.createConsumer();
 
 }).call(this);
+

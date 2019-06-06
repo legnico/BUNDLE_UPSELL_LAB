@@ -9,6 +9,7 @@
   margin-bottom: 10px;
 }
 
+
 .product {
   width: 380px;
   display: flex;
@@ -110,4 +111,9 @@
 .card {
   display:flex;
   justify-content:space-around;
+}
+
+.Polaris-DataTable__Table thead tr th:last-child {
+  width: 100px;
+  text-align: center;
 }

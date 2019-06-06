@@ -13,8 +13,10 @@
     <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
+    <%= render 'shared/frame_top' %>
     <%= render 'shared/flashes' %>
     <%= yield %>
+    <%= render 'shared/frame_bottom' %>
     <%= javascript_include_tag 'application' %>
     <%= javascript_pack_tag 'application' %>
   </body>
