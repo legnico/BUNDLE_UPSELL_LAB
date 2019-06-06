@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_05_151001) do
+ActiveRecord::Schema.define(version: 2019_06_05_155741) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,14 @@ ActiveRecord::Schema.define(version: 2019_06_05_151001) do
   create_table "graphic_settings", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "add_to_cart_button_color"
+    t.string "add_to_cart_button_text_color"
+    t.string "no_thanks_text_color"
+    t.string "product_title_text_color"
+    t.string "regular_price_text_color"
+    t.string "sale_price_text_color"
+    t.string "upsell_popup_font_family"
+    t.string "add_to_cart_button_font_family"
   end
 
   create_table "product_associations", force: :cascade do |t|

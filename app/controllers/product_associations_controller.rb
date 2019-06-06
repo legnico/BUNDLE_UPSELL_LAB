@@ -1,5 +1,6 @@
 class ProductAssociationsController < AuthenticatedController
   skip_before_action :verify_authenticity_token, :only => [:toggle_online]
+  before_action :identify_user
 
   def index
     @product_associations = ProductAssociation.all
@@ -44,6 +45,14 @@ class ProductAssociationsController < AuthenticatedController
     respond_to do |format|
       format.html { redirect_to product_associations_path }
     end
+  end
+
+  def identify_user
+    @current_shop = ShopifyAPI::Shop.current
+    @current_shop_name = @current_shop.name
+    @shop_owner_name = @current_shop.shop_owner
+    @shop_owner_name_initial = @shop_owner_name.split(" ").map { |x| x.split("").first }.join("")
+    @admin_shopify_path = "https://#{@current_shop.domain}/admin/"
   end
 
   private
