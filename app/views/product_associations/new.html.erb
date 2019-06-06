@@ -25,8 +25,8 @@
             <div class="card-product m-3">
               <img src=<%= product.images[0].src %>>
 
-              <div class="card-product-infos">
-                 <%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_top" %>
+              <div class="card-product-infos d-block">
+                <p><%= product.title %></p>
                 <p><%= product.variants[0].price %>€</p>
               </div>
             </div>
