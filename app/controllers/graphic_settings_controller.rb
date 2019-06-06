@@ -7,7 +7,12 @@ class GraphicSettingsController < ApplicationController
 
   def edit
     # action appelee en cliquant sur Settings dans l'app
-    @graphic_settings = GraphicSetting.new
+    #temporary_settings = GraphicSetting.find(2)
+    #temporary_settings.destroy
+    #@temporary_settings = GraphicSetting.find(1)
+    @graphic_settings = GraphicSetting.find(params[:id])
+    Shop.first.with_shopify!
+    @products = ShopifyAPI::Product.find(:all)
   end
 
   def update
