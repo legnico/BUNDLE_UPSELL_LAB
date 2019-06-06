@@ -9,10 +9,16 @@ Bundler.require(*Rails.groups)
 module BUNDLEUpsellLab
   class Application < Rails::Application
     config.generators do |generate|
-          generate.assets false
-          generate.helper false
-          generate.test_framework  :test_unit, fixture: false
-        end
+        generate.assets false
+        generate.helper false
+        generate.test_framework  :test_unit, fixture: false
+      end
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+         origins '*'
+         resource '*', :headers => :any, :methods => [:get, :post, :options]
+       end
+    end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
     config.action_view.embed_authenticity_token_in_remote_forms = true
